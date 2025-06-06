@@ -1,6 +1,9 @@
 # Top-level configuration
 name = "website"
 compatibility_date = "2025-06-06"
+routes = [
+  { pattern = "blog.apurva-mishra.com", custom_domain = true }
+]
 
 [assets]
 directory = "./dist/"
