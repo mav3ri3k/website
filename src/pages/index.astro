@@ -3,6 +3,10 @@ import Base from '../layouts/Base.astro';
 import BaseHead from '../components/BaseHead.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import '../styles/global.css'
+
+import Image from '../components/Image.astro'
+import Card from '../components/Card.astro'
+import Code from '../components/Code.astro'
 ---
 
 <!doctype html>
@@ -11,8 +15,11 @@ import '../styles/global.css'
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<Base>
+		<Base pageTitle="Home">
 			<h1>Apurva Mishra</h1>
+			<p>
+			There
+			</p>
 		</Base>
 	</body>
 </html>

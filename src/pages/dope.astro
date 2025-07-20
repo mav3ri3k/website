@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import BaseHead from '../components/BaseHead.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import '../styles/global.css'
+
+import Image from '../components/Image.astro'
+import Card from '../components/Card.astro'
+import Code from '../components/Code.astro'
+
+let code = `
+#include <stdio.h>
+
+int main() {
+	print("Hello, World!");
+
+	return 0
+}
+`
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Base pageTitle="Dope">
+			<h1>Dope</h1>
+			<Image src="/src/assets/keyboard.png" label="121 WPM @ 60 seconds" />
+			<Image src="/src/assets/dog.jpg" label="Travel guide at Tiger's Nest Trek, Bhutan" />
+			<Image src="/src/assets/blender.png" label="Blender Render" />
+			<Image src="/src/assets/racing.jpg" label="No. 1 in World" />
+			<Image src="/src/assets/reaction.png" label="😮 In-Human!" />
+		</Base>
+	</body>
+</html>

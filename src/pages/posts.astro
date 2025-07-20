@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/Base.astro';
-const pageTitle = "Home Page";
 
 import { getCollection, getEntry } from 'astro:content';
 
@@ -10,7 +9,7 @@ const posts = (await getCollection('posts')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle="Posts">
   <h1>Posts</h1>
   <ul>
     {posts.map(post => (

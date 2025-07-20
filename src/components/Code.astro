@@ -1,0 +1,25 @@
+---
+import '../styles/global.css';
+import Card from './Card.astro'
+import { Code } from 'astro:components';
+
+
+const { name, lang, body } = Astro.props;
+
+---
+<style>
+.align-center {
+	justify-content: center;
+}
+</style>
+
+<div class="boundary">
+	<div class="align-center">
+	<strong>
+	<div class="name">
+	{name}
+	</div>
+	</strong>
+	</div>
+	<Code code={body} lang={lang}/>
+</div>

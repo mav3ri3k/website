@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900');
 
-
 :root {
   --background-color: #3c6baa;
   --accent-color: #c5d0e5;  
@@ -17,13 +16,13 @@ body {
   background-size: var(--grid-line-spacing) var(--grid-line-spacing);
 }
 
-
 :root {
   --color-deg: 280;
   --primary: oklch(50% 0.22 var(--color-deg));
   --surface0: oklch(94% 0.015 var(--color-deg));
   --base: oklch(98% 0.01 var(--color-deg));
-  --radius: 8px;
+  --radius: 23px;
+  --max-width: 650px;
 
 }
 
@@ -31,7 +30,7 @@ body{
   font-family: Vollkorn; 
   background-color: var(--base);
   margin:40px auto;
-  max-width:650px;
+  max-width:var(--max-width);
   line-height:1.6;
   font-size:18px;
   color: #444;
@@ -49,6 +48,7 @@ a {
 
 a:hover {
   color: var(--primary);
+  font-weight: bold;
 }
 .date {
   font-family: jetbrains;
@@ -57,7 +57,43 @@ a:hover {
 nav {
   display: flex;
   gap: 8px;
-  background-color: var(--surface0);
-  padding: 2px 8px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--primary);
+  padding: 4px 16px;
   border-radius: var(--radius);
+  margin: 10px 0;
+}
+
+.image {
+  border-radius: var(--radius);
+  padding: 10px;
+}
+
+.Image {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  background-color: var(--surface0);
+  padding: 4px 16px;
+  border-radius: var(--radius);
+  display: inline-block;
+  margin:10px auto;
+}
+.name {
+  background-color: var(--surface0);
+  padding: 4px 16px;
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.boundary {
+  padding: 4px;
+  border-style: solid;
+  border-radius: var(--radius);
+  border-color: var(--surface0);
+  border-width: 2px;
 }
