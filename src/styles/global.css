@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900');
+
+
+:root {
+  --background-color: #3c6baa;
+  --accent-color: #c5d0e5;  
+
+  --grid-line-thickness: 1px; 
+  --grid-line-spacing: 20px; 
+  --grid-line-opacity: 0.05; 
+}
+
+body {
+  background-image:
+      linear-gradient(0deg, transparent calc(var(--grid-line-spacing) - var(--grid-line-thickness)), rgba(0, 0, 0, var(--grid-line-opacity)) var(--grid-line-spacing)),
+      linear-gradient(90deg, transparent calc(var(--grid-line-spacing) - var(--grid-line-thickness)), rgba(0, 0, 0, var(--grid-line-opacity)) var(--grid-line-spacing));
+  background-size: var(--grid-line-spacing) var(--grid-line-spacing);
+}
+
+
+:root {
+  --color-deg: 280;
+  --primary: oklch(50% 0.22 var(--color-deg));
+  --surface0: oklch(94% 0.015 var(--color-deg));
+  --base: oklch(98% 0.01 var(--color-deg));
+  --radius: 8px;
+
+}
+
+body{
+  font-family: Vollkorn; 
+  background-color: var(--base);
+  margin:40px auto;
+  max-width:650px;
+  line-height:1.6;
+  font-size:18px;
+  color: #444;
+  padding:0 10px
+}
+
+h1, h2, h3 {
+  line-height:1.2;
+  color: var(--primary);
+}
+
+a {
+  color: #444
+}
+
+a:hover {
+  color: var(--primary);
+}
+.date {
+  font-family: jetbrains;
+}
+
+nav {
+  display: flex;
+  gap: 8px;
+  background-color: var(--surface0);
+  padding: 2px 8px;
+  border-radius: var(--radius);
+}
