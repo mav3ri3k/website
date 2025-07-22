@@ -17,10 +17,10 @@ body {
 }
 
 :root {
-  --color-deg: 280;
+  --color-deg: 266;
   --primary: oklch(50% 0.22 var(--color-deg));
   --surface0: oklch(94% 0.015 var(--color-deg));
-  --base: oklch(98% 0.01 var(--color-deg));
+  --base: oklch(98% 0.02 var(--color-deg));
   --radius: 23px;
   --max-width: 650px;
 

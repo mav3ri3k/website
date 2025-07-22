@@ -14,7 +14,7 @@ interface Props {
 const { src, label } = Astro.props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif}');
-if (!images[src]) throw new Error(`"${src}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`);
+if (!images[src]) throw new Error(`"${src}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif,svg}"`);
 ---
 <style>
 .align-center {
