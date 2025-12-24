@@ -1,17 +1,18 @@
 ---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
 interface Props {
-	src: string;
-	label: string;
+  src: ImageMetadata;
+  label: string;
 }
 
 const { src, label } = Astro.props;
-const imagePath = src.replace('/src/assets/', '/');
 ---
 
 <div class="Image">
-	<div class="Image-content">
-		<img src={imagePath} alt={label} />
-		<p class="Image-label">{label}</p>
-	</div>
-</div>
+  <div class="Image-content">
+    <Image src={src} alt={label} />
+    <p class="Image-label">{label}</p>
+  </div>
 </div>

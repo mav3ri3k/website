@@ -4,16 +4,25 @@ pubDate: 2025-10-24
 updateDate: 2025-10-24
 ---
 import Image from '../../components/Image.astro'
+import tenstorrent_logo from '../../assets/tenstorrent_logo.png';
+import rdna4_audience from '../../assets/rdna4_audience.png';
+import transformer from '../../assets/transformer.png';
+import ar_llm from '../../assets/ar_llm.png';
+import billy_data from '../../assets/billy_data.png';
+import horace_factory from '../../assets/horace_factory.png';
+import map_graph from '../../assets/map_graph.png';
+import amd_intel from '../../assets/amd_intel.png';
+import ascalon from '../../assets/ascalon.png';
 
 It seems I only get motivated to write when I want to glaze someone.
 
-> “If you can be anything, be kind”
+> "If you can be anything, be kind"
 >
 > -- Unknown
 
 Today the recipient of this glaze is [tenstorrent](https://tenstorrent.com/). It's a hardware company which has been living in my mind rent-free for the past two years.
 
-<Image src="/src/assets/tenstorrent_logo.png" label="Notice lowercase t in the logo, uncommon but neat!" />
+<Image src={tenstorrent_logo} label="Notice lowercase t in the logo, uncommon but neat!" />
 
 
 # I am a serious programmer
@@ -25,12 +34,12 @@ But I am a software person, why do I care about a hardware company ? This is bec
 
 There is a small sliver of elite programmers that live right at the cusp of software and hardware. They can do things your javascript developer can't: *make hardware dance*. Even the documents meant for them demand respect.
 
-<Image src="/src/assets/rdna4_audience.png" label="RDNA4 Instruction Set Architecture, scaring away any js dev from getgo" />
+<Image src={rdna4_audience} label="RDNA4 Instruction Set Architecture, scaring away any js dev from getgo" />
 
 
 To join their ranks, last year I [worked on the rust compiler during gsoc](https://summerofcode.withgoogle.com/archive/2024/projects/kXG0mZoj). But that's for CPU, how do I go even more exotic and understand modern accelerator stack ? This turned out to be lot harder. This is a space of extreme acceleration and innovation is happening as we speak. This means there is no course text book which you can refer. All that exist are either thick reference manuals or sprawling codebases:
 - "RDNA4" Instruction Set Architecture
-- Qualcomm Hexagon V73, Programmer’s Reference Manual
+- Qualcomm Hexagon V73, Programmer's Reference Manual
 - OpenXLA
 
 *Shoutout to [tinygrad](https://github.com/tinygrad/tinygrad) for being **tiny**.*
@@ -65,11 +74,11 @@ Okay sweet, they have oss software. But why have they been living rent-free in m
 
 For that lets first understand how modern AI models work. 
 
-<Image src="/src/assets/transformer.png" label="Transformer Architecture which enabled Will Smith eating spaghetti" />
+<Image src={transformer} label="Transformer Architecture which enabled Will Smith eating spaghetti" />
 
 Using a high level framework like pytorch/jax, it can be easily modelled in [100 lines of python](https://github.com/mav3ri3k/jax-models/blob/master/attoBabble/model.py). Notice, that the programming model used here is data oriented similar to functional programming languages. Modern large language models do not hold any state between tokens. (There are RNN/LSTM/GRU but we don't talk about them)
 
-<Image src="/src/assets/ar_llm.png" label="Autoregressive LLM" />
+<Image src={ar_llm} label="Autoregressive LLM" />
 A LLM is trained to predict the next most probably word. Then the output is appended to the original string and the process continues until the end of line special token is received.
 
 A given input moves in a feed forward manner from the starting node to the final node of the model. Thus we can call this connected set of nodes a graph.
@@ -88,7 +97,7 @@ Many AI ops, especially small matmuls, elementwise ops, and normalization layers
 To mitigate this issue, GPU use a **SIMT** model: Single Instruction, Multiple Threads. Web dev is highly memory bound, where compute is fast, but we have to wait for API responses. Therefore they make heavy use for concurrency, where one thread utilises compute while other waits for response from I/O. Similar idea is used here but at much lower level.
 
 You would be surprised how much time is just data movement.
-<Image src="/src/assets/billy_data.png" label="Bill Dally presenting 'Hardware for Deep Learning'" />
+<Image src={billy_data} label="Bill Dally presenting 'Hardware for Deep Learning'" />
 
 Here memory related bandwidth is 
 - Input Buffer (47%)
@@ -98,7 +107,7 @@ Here memory related bandwidth is
 Together, they represent **84%** of total time!
 
 One analogy I quite like is this.
-<Image src="/src/assets/horace_factory.png" label="Yoinked from https://horace.io/brrr_intro.html" />
+<Image src={horace_factory} label="Yoinked from https://horace.io/brrr_intro.html" />
 
 
 ## 2. Compute Utilisation
@@ -135,7 +144,7 @@ If this sounds confusing, read the [TT-Metal Guide](https://github.com/tenstorre
 We established early on that modern models are just graphs. Well, the NoC interface of a tenstorrent chip is designed for graph!
 
 
-<Image src="/src/assets/map_graph.png" label="Compute graph mapped on to tenstorrent chip" />
+<Image src={map_graph} label="Compute graph mapped on to tenstorrent chip" />
 
 Lets go through each problem we had with the GPU and compare how it is addressed here
 
@@ -145,7 +154,7 @@ Each compute core has 1.5MB SRAM. So model weights can be loaded on the SRAM. On
 ## Compute Utilisation
 Each tensix core can run individual kernel and utilises the actor model. Then, if a node can not utilize the entire hardware, we have flexibility to use it for other nodes in dependency graph. This is not just limited to single chip. Even after attaching multiple chips together using ethernet, our logical programming model is still a huge NoC. Thus for bigger model, we still just map the graph on to the cores, just on bigger scale, while our logic remains same. This is huge because a programmer can offload all this to the compiler.
 
-# Moores's Law
+# Moore's Law
 
 That's the hardware but there is more! Shiny objects help gain attention, but stories are what keep us coming back. For me, its the Moore's Law. We have been told Moore's Law is dead. Transistors are reaching size of atom, we literally can't scale any further, fair point. But thing really stuck me, when I heard this:
 
@@ -157,11 +166,11 @@ It is from a youtube video with 200 views: [David Rumelhart - Brainstyle Computa
 
 The truth of the matter is that Moore's Law in its purest sense has been dead for quite a while. Read this blog from Adi Fuchs: [AI Accelerators — Part II: Transistors and Pizza (or: Why Do We Need Accelerators)?](https://medium.com/@adi.fu7/ai-accelerators-part-ii-transistors-and-pizza-or-why-do-we-need-accelerators-75738642fdaa).
 
-Neither is it a law. I would argue that it is a target and it is through effort of engineers that we keep matching it. The blog by Adi, explains various different scaling axis we have used and next innovation when one starts to fail. According to [The Relentless Pursuit of Moore’s Law](https://semiconductor.substack.com/p/the-relentless-pursuit-of-moores-fcd), Apple's M2 chip is right on line of the moore's law. When I [asked Kimi K2 about this](https://www.kimi.com/share/d3t8f8ktr22riijkvb4g), it pointed out that the metric used to measure this has been changed from CPU core(original Moore's Law) to System-on-Chip. I believe this is just another axis we are scaling on.
+Neither is it a law. I would argue that it is a target and it is through effort of engineers that we keep matching it. The blog by Adi, explains various different scaling axis we have used and next innovation when one starts to fail. According to [The Relentless Pursuit of Moore's Law](https://semiconductor.substack.com/p/the-relentless-pursuit-of-moores-fcd), Apple's M2 chip is right on line of the moore's law. I [asked Kimi K2 about this](https://www.kimi.com/share/d3t8f8ktr22riijkvb4g), it pointed out that the metric used to measure this has been changed from CPU core(original Moore's Law) to System-on-Chip. I believe this is just another axis we are scaling on.
 
 This brings me to perhaps my favourite slide by Jim Keller.
 
-<Image src="/src/assets/amd_intel.png" label="Change w/ Jim Keller on Youtube" />
+<Image src={amd_intel} label="Change w/ Jim Keller on Youtube" />
 
 He says:
 > For example so I was at Apple and two companies AMD and Intel made processors and they came in. I won't tell you which one was which but one of them said we think computer performance is plateauing for a bunch of reasons- predictability of branches, memory latency, pipeline and a whole bunch of reasons and the other company said we think they're going to get 10% percent faster every year **and they both executed on their plans**.
@@ -172,7 +181,7 @@ I think we can infer which line belongs to whom on the graph.
 
 The players have changed. Jensen Huang has said that Moore's Law is now dead. Tenstorrent claims 10% percent yearly upgrade.
 
-<Image src="/src/assets/ascalon.png" label="Beyond Innovation: RISC-V’s Path to Mass Adoption with Mature IP by Wei-Han Lien | Tenstorrent" />
+<Image src={ascalon} label="Beyond Innovation: RISC-V's Path to Mass Adoption with Mature IP by Wei-Han Lien | Tenstorrent" />
 
 _**Who is going to execute on their plans ?**_
 
@@ -191,7 +200,7 @@ Even apple understand this dev cycle and implementing this in MLX.
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">We don&#39;t have any plans to drive a Nvidia GPU from a Mac using MLX.<br></br>&gt; Testing quietly and efficiently natively and then flipping the switch on for the RTX 40/50 for scaling up <br></br>What you can do today is run the same MLX code on a Mac or an Nvidia GPU which has its own host CPU…</p>&mdash; Awni Hannun (@awnihannun) <a href="https://twitter.com/awnihannun/status/1980988120888979941?ref_src=twsrc%5Etfw">October 22, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Can you enable this "flipping the switch" for tt boards. Maybe something similar to [HIP-CPU](https://github.com/ROCm/HIP-CPU). Allow running code locally, just to check for correctness during dev cycles, and then flip the switch to run on cloud. So the goal would be “functional correctness validation” locally, not speed.
+Can you enable this "flipping the switch" for tt boards. Maybe something similar to [HIP-CPU](https://github.com/ROCm/HIP-CPU). Allow running code locally, just to check for correctness during dev cycles, and then flip the switch to run on cloud. So the goal would be "functional correctness validation" locally, not speed.
 
 Wow, you actually made it to the end of this love letter 😁.  
 If you ever need a college monkey to tinker on `tt-metal-cpu` or `tt-compiler`, consider giving this monkey an internship.

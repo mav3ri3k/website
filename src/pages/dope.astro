@@ -3,6 +3,11 @@ import Base from '../layouts/Base.astro';
 import BaseHead from '../components/BaseHead.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import Image from '../components/Image.astro';
+import keyboard from '../assets/keyboard.png';
+import dog from '../assets/dog.jpg';
+import blender from '../assets/blender.png';
+import racing from '../assets/racing.jpg';
+import reaction from '../assets/reaction.png';
 ---
 
 <!doctype html>
@@ -14,11 +19,11 @@ import Image from '../components/Image.astro';
 		<Base pageTitle="Dope">
 			<article>
 				<h1>Dope</h1>
-				<Image src="/src/assets/keyboard.png" label="121 WPM @ 60 seconds" />
-				<Image src="/src/assets/dog.jpg" label="Travel guide at Tiger's Nest Trek, Bhutan" />
-				<Image src="/src/assets/blender.png" label="Blender Render" />
-				<Image src="/src/assets/racing.jpg" label="No. 1 in the World" />
-				<Image src="/src/assets/reaction.png" label="In-Human!" />
+				<Image src={keyboard} label="121 WPM @ 60 seconds" />
+				<Image src={dog} label="Travel guide at Tiger's Nest Trek, Bhutan" />
+				<Image src={blender} label="Blender Render" />
+				<Image src={racing} label="No. 1 in the World" />
+				<Image src={reaction} label="In-Human!" />
 			</article>
 		</Base>
 	</body>
