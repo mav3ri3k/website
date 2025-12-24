@@ -1,0 +1,34 @@
+---
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '' } = Astro.props;
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/posts/', label: 'Posts' },
+  { href: '/dope/', label: 'Dope' },
+  { href: 'https://x.com/mav3ri3k', label: 'Twitter' },
+];
+
+const isActive = (href: string) => {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+};
+---
+
+<nav class="bottom-nav">
+  <div class="bottom-nav-items">
+    {navItems.map((item) => (
+      <a
+        href={item.href}
+        class:list={['bottom-nav-link', { active: isActive(item.href) }]}
+        target={item.href.startsWith('http') ? '_blank' : undefined}
+        rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+      >
+        {item.label}
+      </a>
+    ))}
+  </div>
+</nav>

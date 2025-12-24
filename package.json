@@ -16,6 +16,11 @@
     "sharp": "^0.34.4"
   },
   "devDependencies": {
-    "wrangler": "^4.45.0"
+    "wrangler": "^4.45.0",
+    "@types/bun": "latest"
+  },
+  "private": true,
+  "peerDependencies": {
+    "typescript": "^5"
   }
 }

@@ -1,0 +1,55 @@
+---
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '' } = Astro.props;
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/posts/', label: 'Posts' },
+  { href: '/dope/', label: 'Dope' },
+];
+
+const socialItems = [
+  { href: 'https://github.com/mav3ri3k', label: 'GitHub' },
+  { href: 'https://x.com/mav3ri3k', label: 'Twitter' },
+];
+
+const isActive = (href: string) => {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+};
+---
+
+<aside class="sidebar">
+  <div class="sidebar-profile">
+    <h1 class="sidebar-title">Apurva Mishra</h1>
+    <p class="sidebar-subtitle">Building the future</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    {navItems.map((item) => (
+      <a
+        href={item.href}
+        class:list={['sidebar-nav-link', { active: isActive(item.href) }]}
+      >
+        {item.label}
+      </a>
+    ))}
+  </nav>
+
+  <div class="sidebar-social">
+    {socialItems.map((item) => (
+      <a
+        href={item.href}
+        class="sidebar-social-link"
+        target="_blank"
+        rel="noopener noreferrer"
+        title={item.label}
+      >
+        {item.label}
+      </a>
+    ))}
+  </div>
+</aside>

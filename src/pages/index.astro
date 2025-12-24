@@ -2,44 +2,41 @@
 import Base from '../layouts/Base.astro';
 import BaseHead from '../components/BaseHead.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import '../styles/global.css'
-
-import Image from '../components/Image.astro'
-import Card from '../components/Card.astro'
-import Code from '../components/Code.astro'
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title="Home" description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Base pageTitle="Home">
-			<h1>Apurva Mishra</h1>
-			<p>
-			Welcome to my homepage!
-			</p>
-			<p>
-			I’m currently pursuing a Bachelor’s degree at VIT University in CSE.
-			In the process, I have become more and more <a href="https://www.kimi.com/share/d10r992av1fdtpp6ikag">AGI-pilled</a>.
-			Not from the direction of the <a href="https://www.kimi.com/share/d1v5q9hb9p54l0l20ul0">paper-clip argument</a>
-			but rather that it's going to augment humans in continuing the scientific advances.
-			</p>
-			<p>
-			I am excited to contribute to the development of <a href="https://x.com/ylecun/status/1794249923329720415">Advanced Machine Intelligence (AMI)</a>
-			and its potential impact.
-			</p>
-			<p>
-			Reach out to me at A@B, where A=apurva.jpr and B=gmail.com.
-			</p>
-			<h2>News</h2>
-			<ul>
-				<li>
-					<strong>2024-10</strong> Completed Google Summer of Code on the topic <a href="https://summerofcode.withgoogle.com/archive/2024/projects/kXG0mZoj">Sandboxed and Deterministic Proc Macro using Wasm</a>
-					in the Rust compiler
-				</li>
-			</ul>
+			<article>
+				<h1>Apurva Mishra</h1>
+				<p>
+					Welcome to my homepage!
+				</p>
+				<p>
+					I'm currently pursuing a Bachelor's degree at VIT University in CSE.
+					In the process, I have become more and more <a href="https://www.kimi.com/share/d10r992av1fdtpp6ikag">AGI-pilled</a>.
+					Not from the direction of the <a href="https://www.kimi.com/share/d1v5q9hb9p54l0l20ul0">paper-clip argument</a>
+					but rather that it's going to augment humans in continuing the scientific advances.
+				</p>
+				<p>
+					I am excited to contribute to the development of <a href="https://x.com/ylecun/status/1794249923329720415">Advanced Machine Intelligence (AMI)</a>
+					and its potential impact.
+				</p>
+<p>
+					<strong>Reach out to me at A@B, where A=apurva.jpr and B=gmail.com</strong>
+				</p>
+				<h2>News</h2>
+				<ul class="post-list">
+					<li class="post-item">
+						<time class="post-date">October 7, 2024</time>
+						<p>Completed Google Summer of Code on the topic <a href="https://summerofcode.withgoogle.com/archive/2024/projects/kXG0mZoj">Sandboxed and Deterministic Proc Macro using Wasm</a> in the Rust compiler</p>
+					</li>
+				</ul>
+			</article>
 		</Base>
 	</body>
 </html>

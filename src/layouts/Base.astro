@@ -1,28 +1,35 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import Sidebar from '../components/Sidebar.astro';
+import BottomNav from '../components/BottomNav.astro';
+import { ViewTransitions } from 'astro:transitions';
+
+interface Props {
+  pageTitle?: string;
+}
+
 const { pageTitle } = Astro.props;
+
+const currentPath = Astro.url.pathname;
 ---
-</style>
+
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
+    <title>{pageTitle ? `${pageTitle} | Apurva Mishra` : 'Apurva Mishra'}</title>
+    <ViewTransitions />
   </head>
   <body>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/posts/">Posts</a>
-    <a href="/dope/">Dope</a>
-  </nav>
-    <slot />
-  <nav>
-    <a href="https://github.com/mav3ri3k">Github</a>
-    <a href="https://x.com/mav3ri3k">Twitter</a>
-  </nav>   
+    <Sidebar currentPath={currentPath} />
+    <div class="layout">
+      <main class="main-content">
+        <slot />
+      </main>
+      <BottomNav currentPath={currentPath} />
+    </div>
   </body>
 </html>
