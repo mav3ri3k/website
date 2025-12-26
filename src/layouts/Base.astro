@@ -3,12 +3,14 @@ import '../styles/global.css';
 import Sidebar from '../components/Sidebar.astro';
 import BottomNav from '../components/BottomNav.astro';
 import { ViewTransitions } from 'astro:transitions';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
   pageTitle?: string;
+  image?: ImageMetadata;
 }
 
-const { pageTitle } = Astro.props;
+const { pageTitle, image } = Astro.props;
 
 const currentPath = Astro.url.pathname;
 ---

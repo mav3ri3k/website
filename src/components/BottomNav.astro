@@ -18,7 +18,7 @@ const isActive = (href: string) => {
 };
 ---
 
-<nav class="bottom-nav">
+<div class="bottom-nav" role="navigation" aria-label="Mobile navigation">
   <div class="bottom-nav-items">
     {navItems.map((item) => (
       <a
@@ -31,4 +31,4 @@ const isActive = (href: string) => {
       </a>
     ))}
   </div>
-</nav>
+</div>

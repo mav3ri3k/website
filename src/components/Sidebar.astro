@@ -22,13 +22,13 @@ const isActive = (href: string) => {
 };
 ---
 
-<aside class="sidebar">
+<aside class="sidebar" aria-label="Site navigation">
   <div class="sidebar-profile">
     <h1 class="sidebar-title">Apurva Mishra</h1>
     <p class="sidebar-subtitle">Executing on 10% year over year improvement</p>
   </div>
 
-  <nav class="sidebar-nav">
+  <nav class="sidebar-nav" aria-label="Main navigation">
     {navItems.map((item) => (
       <a
         href={item.href}
@@ -39,7 +39,7 @@ const isActive = (href: string) => {
     ))}
   </nav>
 
-  <div class="sidebar-social">
+  <nav class="sidebar-social" aria-label="Social links">
     {socialItems.map((item) => (
       <a
         href={item.href}

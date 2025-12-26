@@ -1,27 +1,79 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.css';
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import type { ImageMetadata } from 'astro';
 
 interface Props {
 	title: string;
-	description: string;
+	description?: string;
 	image?: ImageMetadata;
+	type?: 'website' | 'article';
+	publishedTime?: string;
+	modifiedTime?: string;
+	author?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description} = Astro.props;
+const {
+	title,
+	description = SITE_DESCRIPTION,
+	image,
+	type = 'website',
+	publishedTime,
+	modifiedTime,
+	author = 'Apurva Mishra'
+} = Astro.props;
+
+const imageURL = image
+	? new URL(image.src, Astro.site)
+	: new URL('/banner.png', Astro.site);
 ---
 
 <ViewTransitions />
 
 <meta charset="utf-8" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<meta property="og:title" content={title} />
-<meta property="og:description" content="Personal website of Apurva Mishra" />
-<meta property="og:image" content="https://static.apurva-mishra.com/profile.jpg" />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:type" content="website" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
 
+<title>{title ? `${title} | Apurva Mishra` : 'Apurva Mishra'}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageURL} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content="Apurva Mishra" />
+
+{publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+{author && <meta property="article:author" content={author} />}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageURL} />
+<meta name="twitter:site" content="@mav3ri3k" />
+<meta name="twitter:creator" content="@mav3ri3k" />
+
+<link rel="alternate" type="application/rss+xml" title="Apurva Mishra" href="/rss.xml" />
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "Person",
+	"name": "Apurva Mishra",
+	"url": "https://apurva-mishra.com",
+	"sameAs": [
+		"https://github.com/mav3ri3k",
+		"https://x.com/mav3ri3k"
+	],
+	"jobTitle": "Bachelor's student at VIT University",
+	"worksFor": {
+		"@type": "Organization",
+		"name": "VIT University"
+	}
+})} />

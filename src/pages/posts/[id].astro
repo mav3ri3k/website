@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import BaseHead from '../../components/BaseHead.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -12,20 +13,54 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const imageURL = post.data.heroImage && Astro.site
+  ? new URL(post.data.heroImage.src, Astro.site)
+  : undefined;
 ---
 
-<Base pageTitle={post.data.title}>
-	<article>
-		<h1>{post.data.title}</h1>
-		<p class="date">
-			<time datetime={post.data.pubDate.toISOString()}>
-				{post.data.pubDate.toLocaleDateString('en-US', {
-					year: 'numeric',
-					month: 'long',
-					day: 'numeric',
-				})}
-			</time>
-		</p>
-		<Content />
-	</article>
-</Base>
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={post.data.title}
+      description={post.data.description}
+      image={post.data.heroImage}
+      type="article"
+      publishedTime={post.data.pubDate.toISOString()}
+      modifiedTime={post.data.updatedDate?.toISOString()}
+      author="Apurva Mishra"
+    />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": post.data.title,
+      "datePublished": post.data.pubDate.toISOString(),
+      "dateModified": post.data.updatedDate?.toISOString() || post.data.pubDate.toISOString(),
+      "author": [{
+        "@type": "Person",
+        "name": "Apurva Mishra",
+        "url": "https://apurva-mishra.com"
+      }],
+      "description": post.data.description,
+      "image": imageURL
+    })} />
+  </head>
+  <body>
+    <Base pageTitle={post.data.title} image={post.data.heroImage}>
+      <article>
+        <h1>{post.data.title}</h1>
+        <p class="date">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {post.data.pubDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+        </p>
+        <Content />
+      </article>
+    </Base>
+  </body>
+</html>
