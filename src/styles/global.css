@@ -243,11 +243,65 @@ blockquote p:last-child {
 }
 
 .sidebar-title {
-  font: italic 700 32px/1.2 'Caveat', cursive;
   color: #FFFFFF;
+  width: 100%;
   margin-bottom: var(--space-xs);
-  text-transform: none;
-  letter-spacing: 0.05em;
+}
+
+.sidebar-signature {
+  display: block;
+  width: 100%;
+  height: auto;
+  --signature-speed: 300;
+  --signature-speed-1: var(--signature-speed);
+  --signature-speed-2: var(--signature-speed);
+  --signature-speed-3: var(10);
+  --signature-speed-4: var(--signature-speed);
+  --signature-easing: cubic-bezier(0.42, 0.1, 0.9, 1);
+  --signature-overlap-1-2: 0.6;
+  --signature-overlap-2-3: 0.7;
+  --signature-overlap-3-4: 1.2;
+}
+
+.sidebar-signature path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: var(--sig-length, 1);
+  stroke-dashoffset: var(--sig-length, 1);
+  animation-name: signature-draw;
+  animation-duration: var(--sig-duration, 0.8s);
+  animation-delay: var(--sig-delay, 0s);
+  animation-timing-function: var(--signature-easing, linear);
+  animation-fill-mode: forwards;
+}
+
+@keyframes signature-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-signature path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
 }
 
 .sidebar-subtitle {
