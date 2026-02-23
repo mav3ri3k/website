@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import BaseHead from '../components/BaseHead.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_DESCRIPTION } from '../consts';
 ---
 
 <!doctype html>
@@ -14,26 +14,37 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			<article>
 				<h1>Apurva Mishra</h1>
 				<p>
-					Welcome to my homepage!
+					I build ML systems at the compiler–model boundary.
 				</p>
 				<p>
-					I'm currently pursuing a Bachelor's degree at VIT University in CSE.
-					In the process, I have become more and more <a href="https://www.kimi.com/share/d10r992av1fdtpp6ikag">AGI-pilled</a>.
-					Not from the direction of the <a href="https://www.kimi.com/share/d1v5q9hb9p54l0l20ul0">paper-clip argument</a>
-					but rather that it's going to augment humans in continuing the scientific advances.
+					Currently deep in ML systems + compiler workflows.
+					Thinking a lot about eval correctness, data quality, and reproducible training loops.
+				  If you’re working on ML systems or LLM infra, I’d love to collaborate.
 				</p>
-				<p>
-					I am excited to contribute to the development of <a href="https://x.com/ylecun/status/1794249923329720415">Advanced Machine Intelligence (AMI)</a>
-					and its potential impact.
-				</p>
-<p>
-					<strong>Reach out to me at A@B, where A=apurva.jpr and B=gmail.com</strong>
-				</p>
+				<h2>Selected Works</h2>
+				<ul class="post-list">
+					<li class="post-item">
+						<time class="post-date" datetime="2024-10-07">October 7, 2024</time>
+						<a href="https://summerofcode.withgoogle.com/archive/2024/projects/kXG0mZoj" class="post-link">Google Summer of Code in Rust Compiler</a>
+						<p>Add experimental support to Rust compiler for running procedural macros in WebAssembly.</p>
+					</li>
+					<li class="post-item">
+						<time class="post-date" datetime="2022-02-27">February 27, 2022</time>
+						<a href="https://github.com/mav3ri3k/jax-models" class="post-link">JAX Models</a>
+						<p>Collection of models written in pure JAX, including language and image models.</p>
+					</li>
+					<li class="post-item">
+						<time class="post-date" datetime="2025-01-01">January 1, 2025</time>
+						<a href="https://github.com/mav3ri3k/typ-browser" class="post-link">typ-browser</a>
+						<p>A simple browser made using SwiftUI and Rust. It uses Typst as the document format instead of HTML.</p>
+					</li>
+				</ul>
 				<h2>News</h2>
 				<ul class="post-list">
 					<li class="post-item">
 						<time class="post-date">December 5, 2025</time>
-						<p>ML Intern at IIT Hyderabad</p>
+						<p><strong>ML Intern at IIT Hyderabad</strong></p>
+						<p>At IIT Hyderabad, I am building and iterating on a vulnerability-detection training pipeline, focusing on evaluation reliability and synthetic-data strategy.</p>
 					</li>
 					<li class="post-item">
 						<time class="post-date">October 7, 2024</time>
