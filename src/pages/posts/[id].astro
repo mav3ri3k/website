@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import BaseHead from '../../components/BaseHead.astro';
+import PostAudioPlayer from '../../components/PostAudioPlayer.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -59,6 +60,13 @@ const imageURL = post.data.heroImage && Astro.site
             })}
           </time>
         </p>
+        {post.data.audioPath && (
+          <PostAudioPlayer
+            src={post.data.audioPath}
+            title={post.data.title}
+            type={post.data.audioType}
+          />
+        )}
         <Content />
       </article>
     </Base>

@@ -1,0 +1,69 @@
+---
+import '@videojs/html/audio/skin.css';
+
+interface Props {
+  src: string;
+  title: string;
+  type?: string;
+}
+
+const { src, title, type = 'audio/mp4' } = Astro.props;
+---
+
+<section class="post-audio" aria-label={`Audio narration for ${title}`}>
+  <p class="post-audio__label">Listen to this post</p>
+  <audio-player class="post-audio__player">
+    <audio-skin>
+      <audio
+        slot="media"
+        src={src}
+        preload="metadata"
+        controlslist="nodownload"
+        crossorigin={src.startsWith('http') ? 'anonymous' : undefined}
+      >
+        <source src={src} type={type} />
+      </audio>
+    </audio-skin>
+  </audio-player>
+</section>
+
+<script>
+  import '@videojs/html/audio/player';
+  import '@videojs/html/audio/skin';
+</script>
+
+<style>
+  .post-audio {
+    margin: 1.75rem 0 2rem;
+    padding: 1rem;
+    border: 2px dashed rgba(255, 255, 255, 0.55);
+    border-radius: 1.5rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04)),
+      rgba(0, 0, 0, 0.08);
+  }
+
+  .post-audio__label {
+    margin-bottom: 0.75rem;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .post-audio__player {
+    display: block;
+    width: 100%;
+    --media-border-radius: 1.25rem;
+    --media-surface-background-color: rgba(5, 16, 42, 0.76);
+    --media-surface-inner-border-color: rgba(255, 255, 255, 0.14);
+    --media-surface-outer-border-color: rgba(255, 255, 255, 0.08);
+    --media-surface-shadow-color: rgba(0, 0, 0, 0.28);
+    --media-controls-color: rgba(255, 255, 255, 0.96);
+    --media-slider-track-background-color: rgba(255, 255, 255, 0.2);
+    --media-slider-fill-background-color: rgba(255, 255, 255, 0.95);
+    --media-tooltip-background-color: rgba(10, 18, 40, 0.92);
+    --media-tooltip-color: rgba(255, 255, 255, 0.96);
+  }
+ </style>

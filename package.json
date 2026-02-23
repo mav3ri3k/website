@@ -6,12 +6,15 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "export:tts-text": "node scripts/export-posts-to-tts-text.mjs",
+    "convert:tts-audio": "bash scripts/convert-tts-to-m4a.sh"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.8",
     "@astrojs/rss": "^4.0.13",
     "@astrojs/sitemap": "^3.6.0",
+    "@videojs/html": "^10.0.0-beta.3",
     "astro": "^5.15.1",
     "sharp": "^0.34.4"
   },
