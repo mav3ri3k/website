@@ -78,9 +78,10 @@ function cleanInline(text) {
   next = next.replace(/\*([^*]+)\*/g, '$1');
   next = next.replace(/_([^_]+)_/g, '$1');
   next = next.replace(/[*]/g, '');
+  next = next.replace(/^---\s*/g, '');
   next = next.replace(/<br\s*\/?>/gi, '\n');
   next = next.replace(/<\/?[^>]+>/g, '');
-  next = next.replace(/[⚡🤥😁😂]/g, '');
+  next = next.replace(/[⚡🤥😁😂🫵�]/g, '');
 
   for (const [pattern, replacement] of speechReplacements) {
     next = next.replace(pattern, replacement);
@@ -168,6 +169,7 @@ function transformListsAndHeadings(source) {
     .split('\n')
     .map((line) => {
       if (/^\s*import\s+/.test(line)) return '';
+      if (/^\s*---\s*$/.test(line)) return '';
       if (/^\s*#/.test(line)) return `\nSection: ${cleanInline(line.replace(/^#+\s*/, ''))}\n`;
       if (/^\s*-\s+/.test(line)) return `- ${cleanInline(line.replace(/^\s*-\s+/, ''))}`;
       if (/^\s*\d+\.\s+/.test(line)) return `${line.match(/^\s*(\d+\.)/)?.[1] ?? '1.'} ${cleanInline(line.replace(/^\s*\d+\.\s+/, ''))}`;
@@ -194,6 +196,7 @@ function convertPostToTtsText(source) {
   const { frontmatter, body } = stripFrontmatter(source);
 
   let text = body;
+  text = text.replace(/^\s*---\s*$/gm, '');
   text = transformImages(text);
   text = transformHtmlBlocks(text);
   text = transformCodeFences(text);

@@ -1,4 +1,4 @@
 Build command
 
-1. `pnpm astro build`
-2. `pnpm wrangler deploy`
+1. `bun run astro build`
+2. `bunx wrangler deploy`
